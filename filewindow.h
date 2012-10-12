@@ -1,4 +1,4 @@
-#ifndef FILEWINDOW_H
+ï»¿#ifndef FILEWINDOW_H
 #define FILEWINDOW_H
 
 #include <QMainWindow>
@@ -21,12 +21,12 @@ public:
     void _init();
 public slots:
     void openfile();
-    void send();  //Á¬½Ó·şÎñÆ÷
-    void startTransfer();  //·¢ËÍÎÄ¼ş´óĞ¡µÈĞÅÏ¢
-    void updateClientProgress(qint64); //·¢ËÍÊı¾İ£¬¸üĞÂ½ø¶ÈÌõ
-    //void displayError(QAbstractSocket::SocketError); //ÏÔÊ¾´íÎó
-    void acceptConnection();//½¨Á¢ĞÂÁ´½Ó
-    void updateServerProgress();  //¸üĞÂ½ø¶ÈÌõ£¬½ÓÊÕÊı¾İ
+    void send();  //è¿æ¥æœåŠ¡å™¨
+    void startTransfer();  //å‘é€æ–‡ä»¶å¤§å°ç­‰ä¿¡æ¯
+    void updateClientProgress(qint64); //å‘é€æ•°æ®ï¼Œæ›´æ–°è¿›åº¦æ¡
+    //void displayError(QAbstractSocket::SocketError); //æ˜¾ç¤ºé”™è¯¯
+    void acceptConnection();//å»ºç«‹æ–°é“¾æ¥
+    void updateServerProgress();  //æ›´æ–°è¿›åº¦æ¡ï¼Œæ¥æ”¶æ•°æ®
 private:
     Ui::FileWindow *ui;
     QTcpServer *server;
@@ -35,11 +35,11 @@ private:
     QString fileName;
     qint64 fileNameSize;
     QFile *file;
-    qint64 totalBytes;  //Êı¾İ×Ü´óĞ¡
-    qint64 bytesWritten;  //ÒÑ¾­·¢ËÍÊı¾İ´óĞ¡
-    qint64 bytesToWrite;   //Ê£ÓàÊı¾İ´óĞ¡
-    qint64 loadSize;   //Ã¿´Î·¢ËÍÊı¾İµÄ´óĞ¡
-    QByteArray Block;  //Êı¾İ»º³åÇø
+    qint64 totalBytes;  //æ•°æ®æ€»å¤§å°
+    qint64 bytesWritten;  //å·²ç»å‘é€æ•°æ®å¤§å°
+    qint64 bytesToWrite;   //å‰©ä½™æ•°æ®å¤§å°
+    qint64 loadSize;   //æ¯æ¬¡å‘é€æ•°æ®çš„å¤§å°
+    QByteArray Block;  //æ•°æ®ç¼“å†²åŒº
     int recived;
 };
 

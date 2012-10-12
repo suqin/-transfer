@@ -1,4 +1,4 @@
-#include "filewindow.h"
+ï»¿#include "filewindow.h"
 #include "ui_filewindow.h"
 
 FileWindow::FileWindow(QWidget *parent) :
@@ -9,10 +9,10 @@ FileWindow::FileWindow(QWidget *parent) :
     server = new QTcpServer();
     socket = new QTcpSocket();
     fileNameSize=0;
-    totalBytes=0; //Êý¾Ý×Ü´óÐ¡
-    bytesWritten=0;  //ÒÑ¾­·¢ËÍÊý¾Ý´óÐ¡
-  bytesToWrite=0;   //Ê£ÓàÊý¾Ý´óÐ¡
-    loadSize=4096;   //Ã¿´Î·¢ËÍÊý¾ÝµÄ´óÐ¡
+    totalBytes=0; //æ•°æ®æ€»å¤§å°
+    bytesWritten=0;  //å·²ç»å‘é€æ•°æ®å¤§å°
+  bytesToWrite=0;   //å‰©ä½™æ•°æ®å¤§å°
+    loadSize=4096;   //æ¯æ¬¡å‘é€æ•°æ®çš„å¤§å°
     recived=0;
     ui->progressBar->setMaximum(100);
     ui->progressBar->setValue(0);
@@ -26,7 +26,7 @@ FileWindow::FileWindow(QWidget *parent) :
 }
 void FileWindow::acceptConnection()
 {
-    ui->label_2->setText(tr("ÎÄ¼þ½ÓÊÕÖÐ"));
+    ui->label_2->setText(tr("æ–‡ä»¶æŽ¥æ”¶ä¸­"));
     reciver=server->nextPendingConnection();
     connect(reciver,SIGNAL(readyRead()),this,SLOT(updateServerProgress()));
     server->close();
@@ -57,7 +57,7 @@ void FileWindow::updateServerProgress()
     if(recived==totalBytes)
     {
         _init();
-        ui->label_2->setText(tr("½ÓÊÕÍê³É"));
+        ui->label_2->setText(tr("æŽ¥æ”¶å®Œæˆ"));
         delete reciver;
     }
 }
@@ -68,10 +68,10 @@ void FileWindow::_init()
     fileName="";
     fileNameSize=0;
     delete file;
-    totalBytes=0; //Êý¾Ý×Ü´óÐ¡
-    bytesWritten=0;  //ÒÑ¾­·¢ËÍÊý¾Ý´óÐ¡
-  bytesToWrite=0;   //Ê£ÓàÊý¾Ý´óÐ¡
-    loadSize=4096;   //Ã¿´Î·¢ËÍÊý¾ÝµÄ´óÐ¡
+    totalBytes=0; //æ•°æ®æ€»å¤§å°
+    bytesWritten=0;  //å·²ç»å‘é€æ•°æ®å¤§å°
+  bytesToWrite=0;   //å‰©ä½™æ•°æ®å¤§å°
+    loadSize=4096;   //æ¯æ¬¡å‘é€æ•°æ®çš„å¤§å°
     recived=0;
 }
 
@@ -81,13 +81,13 @@ void FileWindow::openfile()
         if(!fileName.isEmpty())
         {
             ui->sendButton->setEnabled(true);
-            ui->label->setText(tr("´ò¿ªÎÄ¼þ %1 ³É¹¦£¡") .arg(fileName));
+            ui->label->setText(tr("æ‰“å¼€æ–‡ä»¶ %1 æˆåŠŸï¼") .arg(fileName));
         }
 }
 void FileWindow::send()
 {
     socket->connectToHost(ui->lineEdit->text(),6666);
-    ui->label_2->setText(tr("Á¬½ÓÖÐ......"));
+    ui->label_2->setText(tr("è¿žæŽ¥ä¸­......"));
     ui->openButton_2->setEnabled(0);
      bytesWritten = 0;
 }
@@ -104,7 +104,7 @@ void FileWindow::startTransfer()
      sendOut.device()->seek(0);
      sendOut<<totalBytes<<qint64((Block.size() - sizeof(qint64)*2));
      bytesToWrite = totalBytes - socket->write(Block);
-    ui->label_2->setText(tr("ÒÑÁ¬½Ó"));
+    ui->label_2->setText(tr("å·²è¿žæŽ¥"));
      Block.resize(0);
      ui->sendButton->setEnabled(false);
 }
@@ -125,10 +125,10 @@ void FileWindow::updateClientProgress(qint64 numBytes)
     }
     ui->progressBar->setMaximum(totalBytes);
     ui->progressBar->setValue(bytesWritten);
-//¸üÐÂ½ø¶ÈÌõ
-  if(bytesWritten == totalBytes) //·¢ËÍÍê±Ï
+//æ›´æ–°è¿›åº¦æ¡
+  if(bytesWritten == totalBytes) //å‘é€å®Œæ¯•
     {
-        ui->label_2->setText(tr("´«ËÍÎÄ¼þ %1 ³É¹¦").arg(fileName));
+        ui->label_2->setText(tr("ä¼ é€æ–‡ä»¶ %1 æˆåŠŸ").arg(fileName));
         file->close();
         socket->close();
         ui->sendButton->setEnabled(1);
@@ -138,7 +138,7 @@ void FileWindow::updateClientProgress(qint64 numBytes)
 }
 ////////////////////////////////////////////////
 //
-//½ÓÊÕ²¿·Ö
+//æŽ¥æ”¶éƒ¨åˆ†
 //
 ///////////////////////////////////////////////
 
