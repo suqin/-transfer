@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+ï»¿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -66,7 +66,7 @@ void MainWindow::sendMsg()
      ui->msgEdit->clear();
 
 }
-QString MainWindow::GetTime()// dµÃµ½µ±Ç°Ê±¼äĞÅÏ¢
+QString MainWindow::GetTime()// då¾—åˆ°å½“å‰æ—¶é—´ä¿¡æ¯
 {
     QDateTime time;
     time=QDateTime::currentDateTime();

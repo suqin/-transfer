@@ -1,7 +1,7 @@
-///////////////////////////////////////////////////////////
+﻿///////////////////////////////////////////////////////////
 //  Reciver.cpp
 //  Implementation of the Class Reciver
-//  Created on:      06-һ��-2012 23:11:03
+//  Created on:      06-一月-2012 23:11:03
 //  Original author: GA
 ///////////////////////////////////////////////////////////
 
@@ -33,7 +33,7 @@ Data *MsgReciver::getData()
         dataGrams.resize(size);
         reciver->readDatagram(dataGrams.data(),dataGrams.size(),&address,&port);
     }
-    IPInfomation *goalInfo;//�ⲿIP��Ϣ
+    IPInfomation *goalInfo;//外部IP信息
     goalInfo=new IPInfomation(address.toString(),port);
     QString Buff;
     QDateTime time;
